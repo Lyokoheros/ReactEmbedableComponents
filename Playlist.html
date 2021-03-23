@@ -1,0 +1,273 @@
+<!--If You are not sure -->
+<style type="text/css">  
+    button 
+    {
+        padding: 10px;
+        border-radius: 8px;
+        width: '40%';
+        background-color: '#FB6567';
+    }
+
+    .buttons
+    {
+        flex: 1;
+        flex-direction: 'row';
+        justify-content: 'space-between';
+        text-align: center;
+    }
+
+    .song
+    {
+        font-style: italic;
+        text-align: center;
+    }
+
+    .playlist
+    {
+        text-align: center;
+    }
+</style>
+   
+<div id="ReactPlaylist"></div>
+
+
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+    
+    class Iframe extends React.Component
+    {
+      constructor()
+      {
+        super()
+        this.state = {//for future features
+          id: 0
+        }
+      }
+  
+      render()      
+      {
+        return (
+            <div className="playlist">
+                <iframe 
+                    src={this.props.playlistId} 
+                    width="640" height="360"  frameborder="0" allowfullscreen
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                />
+            </div>
+        )
+      }
+    }
+  
+    class SongText extends React.Component
+    {
+      constructor()
+      {
+        super();
+        this.state = {
+          songs: [//those should be replaced with texts and titles of the song You want 
+              {
+                id: 0,
+                title: "Wznieśmy toast!",
+                text: [
+                  [
+                    "Toast, za gościa naszego Walda",
+                    "Za jego mądrość",
+                    "I szczęście że nas miał",
+                    "Oraz Antheę u jego boku",
+                    "Dobrą jak anioł",
+                    "Co z nim wytrzyma"
+                  ],
+  
+                  [
+                    "I niech wkrótce wasze dzieci wam  dadzą",
+                    "Tyle dumy i radości, co nasze dały nam",
+                    "Dla mnie zaszczytem będzie zatrudniać ciebie",
+                    "Dzięki ci Filipie, za pomoc twą.",
+                    "Jak wszyscy tutaj stoi murem za najmądrzejszym człowiekiem we Francji!",
+                    "...W całej Europie!",
+                    "...Na całym świecie!"                  
+                  ],
+  
+                  [
+                    "Niech żyje nam geniusz Waldo!",
+                    "Niech jasno widzi, gdzie prawda, gdzie fałsz",
+                    "Niech Anthea wiele da ci dzieci",
+                    "Wspaniałych jak wy!",
+                    "I tak szczęśliwych!",
+                    "A wam dwóm niech już zawsze Bóg błogosławi",
+                    "Zagrożenie każde niech szybko minie was",
+                    "Nawet Kartagina nie będzie wam straszna ",
+                    "W miłości trwajcie swej, aż po sam kres",
+                  ],
+  
+                  [
+                    "Głowe skromnie skłoń do modlitwy,",
+                    "dzięki śląc za każdy nowy rok.",
+                    "Bo w godzinie każdej, co mija,",
+                    "Jego miłość przy was trwa"
+                  ],
+  
+                  [
+                    "Tak! Wznieśmy toast za przyszłość Walda i Anthei",
+                    "I szczęście ich, wciąż tak pełne jak nocy tej",
+                    "Ich dom niechaj wypełniają  miłość i zdrowe dzieci,",
+                    "a wszystkie ziszczą marzenia!"
+                  ],
+  
+                  [
+                    "Głowe skromnie skłoń do modlitwy,/Tak! Wznieśmy toast za przyszłość Walda i Anthei",
+                    "dzięki śląc za każdy nowy rok./I szczęście ich, wciąż tak pełne jak nocy tej",
+                    "Bo w godzinie każdej, co mija,/Ich dom niechaj wypełniają  miłość i zdrowe dzieci,",
+                    "Jego miłość przy was trwa/a wszystkie ziszczą marzenia!"
+                  ]
+  
+  
+                ]
+              },
+  
+              {
+                id: 1,
+                title: "Odnajdę cię",
+                text: [
+                  [
+                    "W zimnych mrokach pustej celi",
+                    "Samotności cierpiąc ból",
+                    "W pięknych marzeń moich świat uciekam znów",
+                    "Chociaż męczą mnie,",
+                    "Choć chcą złamać, ja wciąż wierzę i ufam, że",
+                    "Kiedyś znajdziesz mnie"
+                  ],
+  
+                  [
+                    "W monotonnym szumie maszyn",
+                    "Moje myśli mkną jak wiatr",
+                    "Tam, gdzie razem z Aelitą skryłeś się",
+                    "Mogą dręczyć mnie, lecz ja dla was",
+                    "Przetrwam to wszystko",
+                    "A Bóg niech nas ma w opiece Swej"
+                  ],
+  
+                  [
+                    "Odnajdziesz mnie",
+                    "I nigdy nie rozdzieli nas już nikt",
+                    "Będziemy znów co noc przytulać się",
+                    "Odnajdziesz mnie",
+                    "Już wkrótce; wiem, że uwolnicie mnie",
+                    "Tak będzie, wiem",
+                    "Odnajdziesz mnie"
+                  ]
+                ]
+              }            
+            ]
+        };
+      }
+  
+      render(props) 
+      {
+        return(
+          <div>
+            <h1 className="song">{this.state.songs[this.props.id].title}</h1>
+            {this.state.songs[this.props.id].text.map(paragraph => <p className="song">
+              {paragraph.map(line => <div>
+                {line}
+              </div>)}
+            </p>)}
+          </div>
+        )
+      }    
+    }
+  
+    class Description extends React.Component
+    {
+      constructor()
+      {
+        super()
+        this.state = {
+          desc: [//replece those with description for your song or to "" to keep it empty
+            "Piosenka Doragonów na cześć Walda i Anthei podczas ich zaręczyn (wraz z udziałem agentki Kartaginy szpiegującej ich na przyjęciu)",
+            "Piosenka rozdzielonych Walda i Anthei o ich wzajemnej tęsknocie i wierze w to, że Bóg zdoła ich ponownie połączyć."
+          ]
+        }
+  
+      }
+  
+      render(props)
+      {
+        return(
+            <p>Description - {this.state.desc[this.props.id]}</p>
+        )
+      }
+    }
+  
+    class Buttons extends React.Component
+    {      
+      render()
+      {//change the value for Next Button from 1 to number of songs
+        return (
+          <div className="Buttons">
+            {this.props.id > 0 ? <button onClick = {this.props.previous}>Previous</button> : ""}
+            {this.props.id < 1 ? <button onClick = {this.props.next}>Next</button> : ""}
+          </div>
+        )
+      }    
+    } 
+    
+    class Playlist extends React.Component
+    {
+      constructor()
+      {
+        super();
+        this.state = {
+          id: 0
+        };
+        this.set = this.set.bind(this)
+        this.next = this.next.bind(this)
+        this.previous = this.previous.bind(this)      
+      }
+  
+      next = () => {
+        this.setState(prevState => {
+              return {
+                id: prevState.id+1
+              }
+          })
+      };
+      previous = () => {
+        this.setState(prevState => {
+              return {
+                id: prevState.id-1
+              }
+          })
+      };
+  
+      set = (value) => {
+        this.setState(prevState => {
+              return {
+                id: value
+              }
+          })
+      };
+  
+      
+      render(props)
+      {
+        return (
+          <div>
+            <Iframe function={this.set} playlistId={this.props.playlistId} />            
+            <SongText id={this.state.id} />
+            <Description id={this.state.id} />
+            <Buttons previous={this.previous} next={this.next} id={this.state.id} />
+          </div>
+        )
+      }
+    }
+  
+  
+    ReactDOM.render(//change the characters after "?list=" to desired playlist Id (how to find it You can read here: https://support.google.com/youtube/answer/171780)
+        <Playlist playlistId="https://www.youtube.com/embed/videoseries?list=PL-lX-NzYWEQMsiWPDmytLB_1HJ_YAq09J"/>,
+      document.getElementById('ReactPlaylist')
+    );
+  
+  </script>
